@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order>
+  <JOB_TICKET>${jobTicket}</JOB_TICKET>
+  <FILE_NAME>${url!}</FILE_NAME>
+  <SHAPE>${shape}</SHAPE>
+  <SIZE>${size}</SIZE>
+  <SPINE_HEIGHT>${height}</SPINE_HEIGHT>
+  <WIDTH>${width}</WIDTH>
+  <GRAIN>${grain}</GRAIN>
+  <PAPER_WEIGHT>${paperWeight!}</PAPER_WEIGHT>
+  <PAPER_NAME>${paperName}</PAPER_NAME>
+  <SCALE>${scale}</SCALE>
+  <NOTES>${batchNumber}</NOTES>
+  <TRIM_SPINE_HEIGHT>${height}</TRIM_SPINE_HEIGHT>
+  <TRIM_WIDTH>${width}</TRIM_WIDTH>
+  <IMPO_NOTE>?</IMPO_NOTE>
+  <IMPO_TEMPLATE>${impoTemplate}</IMPO_TEMPLATE>
+  <PRESS_SHEET_SIZE>?</PRESS_SHEET_SIZE>
+  <CUSTOMER_NAME>IRIS BOOK</CUSTOMER_NAME>
+  <JOB_ID>${jobId}</JOB_ID>
+  <NUMBER_OF_COPIES>${numCopies}</NUMBER_OF_COPIES>
+  <PAGE_COUNT>${numPages}</PAGE_COUNT>
+  <HEAVY_SUBSTRATE_MODE>?</HEAVY_SUBSTRATE_MODE>
+  <FOLDING>?</FOLDING>
+  <BINDING>?</BINDING>
+  <DRILL>?</DRILL>
+  <SCORE>?</SCORE>
+  <COATING>?</COATING>
+  <SHRINKWRAP>?</SHRINKWRAP>
+  <FILE_REFERENCE>?</FILE_REFERENCE>
+</order>

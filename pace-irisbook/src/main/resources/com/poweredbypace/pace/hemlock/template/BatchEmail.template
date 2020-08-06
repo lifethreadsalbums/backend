@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+
+<style type="text/css">
+    table,tr,td,th { 
+        text-align:center;
+        border-collapse: collapse;
+        border: 1px solid #000000; 
+    }
+   
+    tr th,
+    .footer { 
+        background-color:#909090; 
+        font-weight:bold; 
+    }
+    
+    .total {
+        text-align:right;
+    }
+    
+    .boldRed {
+    	 font-weight:bold; 
+    	 color:#f00;
+    }
+</style>
+
+</head>
+
+<body>
+<table>
+<tbody>
+    <tr>
+        #if ($hasHeavyCoverage) <th>HSM</th> #end
+        <th>$batch.batchNumber</th>
+        #if ($hasFM) <th>1/S</th> #end
+        <th>SHAPE</th>
+        <th>SETS</th>
+        <th>PAGES</th>
+        <th>TOTAL PAGES</th>
+        <th>%</th>
+        <th>PAPER</th>
+        <th>GRAIN</th>
+        <th>SHEETS</th>
+        <th>RATE</th>
+        <th>TOTAL</th>
+    </tr>
+    
+    #foreach( $row in $rows )
+    <tr>
+        #if ($hasHeavyCoverage) <td>${row.heavyCoverage}</td> #end
+        <td>${row.jobId}</td>
+        #if ($hasFM) <td class="boldRed">${row.singleSided}</td> #end
+        <td>${row.shape}</td>
+        <td>${row.numSets}</td>
+        <td>${row.numPages}</td>
+        <td>${row.totalPages}</td>
+        <td>${row.scale}</td>
+        <td>${row.paper}</td>
+        <td>${row.grain}</td>
+        <td>${row.sheets}</td>
+        <td>${row.rate}</td>
+        <td>${row.totalFormatted}</td>
+    </tr>            
+    #end
+    
+    <tr class="footer">
+    	<td class="total" colspan="#if ($hasHeavyCoverage) #if ($hasFM) 4 #else 3 #end #else #if ($hasFM) 3 #else 2 #end #end">TOTAL NUMBER OF SETS:</td>
+        <td>$totalNumSets</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="total" colspan="2">SHEET COUNT:</td>
+        <td>$sheetCount</td>
+        <td class="total">SUBTOTAL:</td>
+        <td>$subtotal</td>
+    </tr>
+    
+</tbody>
+</table>
+</body>
+</html>

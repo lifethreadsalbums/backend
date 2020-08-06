@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+
+<style type="text/css">
+    table,tr,td,th { 
+        text-align:left;
+        border-collapse: collapse;
+        border: 1px solid #000000;
+        padding-left:3px;
+        padding-right:3px; 
+    }
+   
+    tr th,
+    .footer { 
+        background-color:#c0c0c0; 
+        font-weight:bold;
+        text-align:center; 
+    }
+    
+    .total {
+        text-align:right;
+        
+    }
+    .red {
+    	color:#f00;
+    }
+</style>
+
+</head>
+
+<body>
+<table>
+<tbody>
+	<tr>
+		<th>${month}</th>
+		<th>Net</th>
+		<th></th>
+		<th>Chargeable</th>
+		<th></th>
+		<th>N/C</th>
+		<th></th>
+		<th>Total</th>
+		<th class="red">Total</th>
+		<th></th>
+	</tr>
+    <tr>
+        <th>Paper Type</th>
+        <th>Sheet Count</th>
+        <th class="red">Price</th>
+		<th>Reprints</th>
+		<th class="red">Price</th>
+		<th>Reprints</th>
+		<th class="red">Price</th>
+		<th>Sheets</th>
+		<th class="red">Price</th>
+		<th></th>
+    </tr>
+    
+    #foreach( $row in $rows )
+    <tr>
+        <td>${row.paper}</td>
+        <td class="total">${row.count}</td>
+        <td class="total red">${row.price}</td>
+        <td class="total">${row.reprintCount}</td>
+        <td class="total red">${row.reprintPrice}</td>
+        <td class="total">${row.ncReprintCount}</td>
+        <td class="total red">${row.ncReprintPrice}</td>
+        <td class="total">${row.totalSheets}</td>
+        <td class="total red">${row.totalPrice}</td>
+        <td></td>
+    </tr>            
+    #end
+    
+    <tr class="footer">
+        <td class="total" >Subtotal:</td>
+        <td class="total">$total</td>
+        <td class="total red">${totalNetPrice}</td>
+        <td class="total">${totalReprintCount}</td>
+        <td class="total red">${totalReprintPrice}</td>
+        <td class="total">${totalNcReprintCount}</td>
+        <td class="total red">${totalNcReprintPrice}</td>
+        <td class="total">${totalSheets}</td>
+        <td class="total red">${totalPrice}</td>
+        <td class="subtotal" style="text-align:left">Subtotal</td>
+    </tr>
+    
+    <tr class="footer">
+        <td class="total" >Subtotal Paid Sheets:</td>
+        <td class="total">$totalPaidSheets</td>
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total red">${totalReprintPricePercent}%</td>
+        <td class="total"></td>
+        <td class="total red">${totalNcReprintPricePercent}%</td>
+        <td class="total"></td>
+        <td class="total red">$tax</td>
+        <td class="subtotal" style="text-align:left">${taxAmount}% ${taxName}</td>
+    </tr>
+    <tr class="footer">
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total"></td>
+        <td class="total red">$totalPricePlusTax</td>
+        <td class="subtotal" style="text-align:left">TOTAL</td>
+    </tr>
+    
+</tbody>
+</table>
+</body>
+</html>

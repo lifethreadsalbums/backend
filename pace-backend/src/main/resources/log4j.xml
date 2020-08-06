@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH\:mm\:ss,SSS} %-5p %-10c:%m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="pace-backend" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/pace-backend.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH\:mm\:ss,SSS} %-5p %-10c:%m%n" />
+		</layout>
+	</appender>
+	
+	<logger name="com.poweredbypace.pace.view" additivity="false">
+        <level value="info" />
+        <appender-ref ref="pace-backend" />
+    </logger>
+	
+	<logger name="com.poweredbypace.pace" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="pace-backend" />
+	</logger>
+	
+	<logger name="com.poweredbypace.legacy" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="pace-backend" />
+	</logger>
+	
+	<logger name="org.springframework.core" additivity="false">
+		<level value="info" />
+		<appender-ref ref="pace-backend" />
+	</logger>
+	
+	<logger name="org.springframework.cache" additivity="false">
+        <level value="info" />
+        <appender-ref ref="pace-backend" />
+    </logger>
+	
+	<logger name="org.springframework.beans" additivity="false">
+		<level value="info" />
+		<appender-ref ref="pace-backend" />
+	</logger>
+	
+	<logger name="org.springframework.context" additivity="false">
+		<level value="info" />
+		<appender-ref ref="pace-backend" />
+	</logger>
+
+	<logger name="org.springframework.web" additivity="false">
+		<level value="info" />
+		<appender-ref ref="pace-backend" />
+	</logger>
+
+    <logger name="org.springframework.integration" additivity="false">
+        <level value="info" />
+        <appender-ref ref="pace-backend" />
+    </logger>
+
+	<logger name="org.hibernate" additivity="false">
+		<level value="warn" />
+		<appender-ref ref="pace-backend" />
+	</logger>
+	
+	
+	<logger name="org.atmosphere.plugin.redis" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="pace-backend" />
+    </logger>
+	
+	<root>
+		<priority value="info" />
+		<appender-ref ref="pace-backend" />
+	</root>
+	
+</log4j:configuration>

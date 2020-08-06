@@ -1,0 +1,5 @@
+To install the app as a daemon on Amazon Linux do this
+
+chmod +x pace-push-server
+sudo cp pace-push-server /etc/init.d
+chkconfig --add pace-push-server

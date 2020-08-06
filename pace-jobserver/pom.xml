@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>pace-jobserver</artifactId>
+	<name>PACE Job Server</name>
+	<url>http://poweredbypace.com</url>
+
+	<parent>
+		<groupId>com.poweredbypace.pace</groupId>
+		<artifactId>pace-project</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.poweredbypace.pace</groupId>
+			<artifactId>pace-service</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.poweredbypace.pace</groupId>
+			<artifactId>pace-irisbook</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.poweredbypace.pace</groupId>
+			<artifactId>pace-shipping</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.poweredbypace.pace</groupId>
+			<artifactId>pace-shipping-ups</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.poweredbypace.pace</groupId>
+			<artifactId>pace-shipping-canada-post</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.springframework.javaconfig</groupId> <artifactId>spring-javaconfig</artifactId> 
+			<version>1.0.0.m3</version> </dependency> -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3.2</version>
+		</dependency>
+		
+		<dependency>
+         	<groupId>org.atmosphere</groupId>
+         	<artifactId>atmosphere-runtime</artifactId>
+         	<version>2.4.9</version>
+      	</dependency>
+      	
+      	<dependency>
+            <groupId>org.atmosphere</groupId>
+            <artifactId>atmosphere-spring</artifactId>
+            <version>2.4.3</version>
+        </dependency>
+        
+        <dependency>
+         <groupId>org.atmosphere</groupId>
+         <artifactId>atmosphere-redis</artifactId>
+         <version>2.4.19</version>
+      </dependency>
+		
+		<!-- <dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			
+		</dependency>  -->
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>	
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.poweredbypace.pace.jobserver.JobServer</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

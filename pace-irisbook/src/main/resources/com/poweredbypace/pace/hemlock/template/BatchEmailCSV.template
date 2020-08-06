@@ -1,0 +1,4 @@
+$batch.batchNumber,SHAPE,SETS,PAGES,TOTAL PAGES,%,PAPER,GRAIN,SHEETS,RATE,TOTAL
+#foreach( $row in $rows )
+${row.jobId},${row.shape},${row.numSets},${row.numPages},${row.totalPages},${row.scale},${row.paper},${row.grain},${row.sheets},${row.rate},${row.totalFormatted}
+#end

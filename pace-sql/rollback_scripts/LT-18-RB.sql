@@ -1,0 +1,2 @@
+delete from T_PRODUCT_OPTION_VALUE where id in (279, 280, 281, 282, 283);
+delete from P_PROTOTYPE_PRODUCT_OPTION_VALUE where id in (439, 440, 441 ,442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456);
