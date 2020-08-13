@@ -12,7 +12,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class MailChimpService {
 
 	private final String resturl = "https://us2.api.mailchimp.com/3.0/lists/2aa4cde51b/members";
 	private final String base64Creds = "bGlmZXRocmVhZHM6YzU5OWM5MTk2MmRlMGVkYTgyMDAxNGMyNmYyY2NlZjUtdXMy";
+	private static final Log logger = LogFactory.getLog(MailChimpService.class);
 
 	public String signUp(User user) {
 		//RestTemplate restTemplate = new RestTemplate(new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
@@ -49,8 +51,14 @@ public class MailChimpService {
 		mailChimpRequest.getMerge_fields().setMMERGE7(StringUtils.defaultIfBlank(user.getAddress(Address.AddressType.ShippingAddress).getCity(),""));
 		mailChimpRequest.getMerge_fields().setMMERGE8(StringUtils.defaultIfBlank(user.getAddress(Address.AddressType.ShippingAddress).getZipCode(), ""));
 		mailChimpRequest.getMerge_fields().setMMERGE9(StringUtils.defaultIfBlank(user.getAddress(Address.AddressType.ShippingAddress).getCountry().getIsoCountryCode(),""));
-		ResponseEntity<Object> response = restTemplate.exchange(resturl, HttpMethod.POST, getHeader(mailChimpRequest), Object.class);
-		return response.getStatusCode().toString();
+		try{
+			ResponseEntity<Object> response = restTemplate.exchange(resturl, HttpMethod.POST, getHeader(mailChimpRequest), Object.class);
+			return response.getStatusCode().toString();
+		}
+		catch(Exception e){
+			logger.error("Error in mail chimp response...." + e);
+		}
+		return "";
 	}
 
 	private HttpEntity getHeader(MailChimpRequest mailChimpRequest) {
