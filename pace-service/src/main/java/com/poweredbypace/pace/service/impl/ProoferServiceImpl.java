@@ -49,10 +49,14 @@ import com.poweredbypace.pace.repository.SpreadCommentRepository;
 import com.poweredbypace.pace.repository.UserRepository;
 import com.poweredbypace.pace.service.EventService;
 import com.poweredbypace.pace.service.ProoferService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 @Service
 public class ProoferServiceImpl implements ProoferService {
-	
+
+	private final Log logger = LogFactory.getLog(getClass());
+
 	@Autowired
 	private SpreadCommentRepository commentRepo;
 	
@@ -139,6 +143,7 @@ public class ProoferServiceImpl implements ProoferService {
 	
 	@Override
 	public ProoferSettings getProoferSettings(Long productId) {
+		logger.info("getProoferSettings for product id " + productId);
 		return prooferSettingsRepository.findByProductId(productId);
 	}
 

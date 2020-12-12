@@ -333,7 +333,7 @@ public class QueueProcessor implements ApplicationContextAware {
 			
 			if (t != null) {
 				
-				logger.info("Exception detected, ex="+t.getMessage()+", jobId=" +task.getJob().getId());
+				logger.info("Exception detected, ex="+t.getMessage()+", jobId=" +task.getJob().getId()+", t="+t);
 				if (task.getJob().getAttempt()<3) {
 					task.getJob().setAttempt( task.getJob().getAttempt() + 1 );
 					logger.info("Rescheduling job, attempt = "+task.getJob().getAttempt());
@@ -364,7 +364,8 @@ public class QueueProcessor implements ApplicationContextAware {
 		{
 			//do not execute task if is already being executed
 			if (messagesById.get(task.getJob().getId())!=null) {
-				logger.debug("Looks like task ID=" + task.getJob().getId() + " is already being executed, ignoring it.");
+				logger.debug("" +
+						"=" + task.getJob().getId() + " is already being executed, ignoring it.");
 				return;
 			}
 			logger.debug("Executing task, type="+task.getClass().getName() + ", ID=" + task.getJob().getId() );
