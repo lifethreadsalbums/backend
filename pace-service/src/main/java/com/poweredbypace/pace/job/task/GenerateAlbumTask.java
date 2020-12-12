@@ -38,6 +38,7 @@ public class GenerateAlbumTask extends AbstractTask {
 		try {
 			JobProgressInfo progressInfo = job.getJobProgressInfo();
 			progressInfo.setProductId(params.productId);
+			log.info("GenerateAlbumTask->"+params.productId);
 			printProductionService.generateAlbum(params.productId, params.outputType, progressInfo);
 		} catch (InterruptedException e) {
 			log.info("Task interrupted");

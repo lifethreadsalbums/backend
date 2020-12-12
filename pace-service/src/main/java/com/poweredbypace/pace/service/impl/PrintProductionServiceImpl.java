@@ -323,11 +323,12 @@ public class PrintProductionServiceImpl implements PrintProductionService {
 	@Override
 	public void generateAlbum(Product product, OutputType outputType, final JobProgressInfo jobInfo) 
 			throws InterruptedException, PrintGenerationException {
-		
+		log.info("PrintProductionServiceImpl->generateAlbum ");
 		String filename = null;
 		String path = null;
 		
 		AttachmentType attachmentType = AttachmentType.valueOf("HiRes"+outputType.name());
+		log.info("PrintProductionServiceImpl->attachmentType "+outputType.name());
 		saveAttachment(product, null, attachmentType, jobInfo);
 		
 		try {
