@@ -33,6 +33,8 @@ public class ShippingRateRulesShippingProvider extends ShippingProvider {
 	
 	@Autowired
 	private ScriptingService scriptingService;
+
+	private static String LOCAL_PICKUP = "LOCAL_PICKUP";
 	
 	public ShippingRateRulesShippingProvider(String providerId) {
 		super(providerId);
@@ -51,7 +53,9 @@ public class ShippingRateRulesShippingProvider extends ShippingProvider {
 		for(ShippingRateRule rule:rules) {
 //			Boolean condition = expressionEvaluator.evaluate(ctx, 
 //				rule.getConditionExpression(), Boolean.class);
-			
+			if (rule.getCode().equals(LOCAL_PICKUP)) {
+				continue;
+			}
 			Boolean condition = false;
 			try {
 				condition = scriptingService.runScript(rule.getConditionExpression(), ctx, Boolean.class);
