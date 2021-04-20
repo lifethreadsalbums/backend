@@ -104,6 +104,19 @@ public class FlatRateShippingProvider extends ShippingProvider {
 			response.getEntries().add(entry);
 		}
 
+		//Commenting out to disable local pick up option
+		/*Float localPickupRate = genericRuleService.getRuleValue(ctx, LOCAL_PICKUP_RATE, Float.class);
+		if (localPickupRate!=null && localPickupRate>0f) {
+			RateShippingResponseEntry entry = new RateShippingResponseEntry();
+			entry.setMoney(new Money(localPickupRate));
+			ShippingOption shippingOption = new ShippingOption();
+			shippingOption.setCode("LOCAL_PICKUP");
+			shippingOption.setName("Local Pick Up");
+			shippingOption.setProviderId(getProviderId());
+			entry.setShippingOption(shippingOption);
+			response.getEntries().add(entry);
+		}*/
+
 		response.setShipperName("PACE");
 		response.setResponseEnum(ShippingResponse.ResponseEnum.OK);
 		
