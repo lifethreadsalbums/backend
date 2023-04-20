@@ -29,7 +29,7 @@ public class MailChimpService {
 		//List<ClientHttpRequestInterceptor> interceptors = new ArrayList();
 		//interceptors.add(new LoggingRequestInterceptor());
 		//restTemplate.setInterceptors(interceptors);
-		System.setProperty("https.protocols", "TLSv1.1,TLSv1.2");
+		System.setProperty("https.protocols", "TLSv1.2");
 		RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper objectMapper = new ObjectMapper();
 		MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();

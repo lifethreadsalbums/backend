@@ -227,7 +227,7 @@ public class PsiGate implements PaymentGateway {
 	
 	private void verifyPayment(Order order, HttpServletRequest httpRequest) {		
 		log.info("PSI GATE Payment Complete request received");
-		System.setProperty("https.protocols", "TLSv1.1,TLSv1.2");
+		System.setProperty("https.protocols", "TLSv1.2");
 		String orderId = httpRequest.getParameter("OrderID");
 		
 		RestTemplate restTemplate = new RestTemplate();
